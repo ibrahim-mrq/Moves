@@ -81,6 +81,7 @@ public class MoveFragment extends Fragment {
             if (genres_filter.isChecked()) {
                 Intent intent = new Intent(getContext(), FilterActivity.class);
                 intent.putExtra("intent", 1);
+                intent.putExtra("type", "movie");
                 startActivity(intent);
             } else {
                 operation.setGenreId(0);
@@ -169,8 +170,6 @@ public class MoveFragment extends Fragment {
             totalPage = moveResponse.getTotalPages();
             list.addAll(moveResponse.getResults());
             progressBar.setVisibility(View.GONE);
-
-
         });
 
     }

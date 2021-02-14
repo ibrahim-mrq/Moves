@@ -27,23 +27,9 @@ public interface RetrofitInterface {
     @GET("movie/top_rated")
     Call<MoveResponse> movie(@Query("api_key") String api_key, @Query("page") int page);
 
-    @GET("movie/{movie_id}/videos")
-    Call<VideoResponse> videos_movie(@Path("movie_id") int movie_id, @Query("api_key") String api_key);
-
-    @GET("genre/movie/list")
-    Call<GenresResponse> GET_GENRES_movie(@Query("api_key") String api_key);
-
-
-
     @GET("tv/top_rated")
     Call<TvResponse> tv(@Query("api_key") String api_key, @Query("page") int page);
 
-
-
-
-//    @GET("{media_type}/top_rated")
-//    Call<MoveResponse> data(@Path("media_type") String media_type, @Query("api_key") String api_key, @Query("page") int page);
-//
     @GET("{media_type}/{id}/videos")
     Call<VideoResponse> videos(@Path("media_type") String media_type, @Path("movie_id") int movie_id, @Query("api_key") String api_key);
 

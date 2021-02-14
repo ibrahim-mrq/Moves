@@ -42,8 +42,8 @@ public class GetData extends BaseOperation {
         });
     }
 
-    public static void getVideo(final Context context, int movie_id, final Consumer<VideoResponse> consumer) {
-        apiService.videos_movie(movie_id, RetrofitClient.API_KEY).enqueue(new Callback<VideoResponse>() {
+    public static void getVideo(final Context context, String media_type, int movie_id, final Consumer<VideoResponse> consumer) {
+        apiService.videos(media_type, movie_id, RetrofitClient.API_KEY).enqueue(new Callback<VideoResponse>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResponse(Call<VideoResponse> call, Response<VideoResponse> response) {
@@ -59,9 +59,8 @@ public class GetData extends BaseOperation {
         });
     }
 
-
-    public static void GET_GENRES(final Context context, final Consumer<GenresResponse> consumer) {
-        apiService.GET_GENRES_movie(RetrofitClient.API_KEY).enqueue(new Callback<GenresResponse>() {
+    public static void GET_GENRES(final Context context, String media_type, final Consumer<GenresResponse> consumer) {
+        apiService.GET_GENRES(media_type, RetrofitClient.API_KEY).enqueue(new Callback<GenresResponse>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResponse(Call<GenresResponse> call, Response<GenresResponse> response) {
@@ -76,7 +75,6 @@ public class GetData extends BaseOperation {
             }
         });
     }
-
 
     public static void getTv(final Context context, int page, final Consumer<TvResponse> consumer) {
         apiService.tv(RetrofitClient.API_KEY, page).enqueue(new Callback<TvResponse>() {

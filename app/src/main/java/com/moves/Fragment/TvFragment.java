@@ -76,6 +76,7 @@ public class TvFragment extends Fragment {
             if (genres_filter.isChecked()) {
                 Intent intent = new Intent(getContext(), FilterActivity.class);
                 intent.putExtra("intent", 1);
+                intent.putExtra("type", "tv");
                 startActivity(intent);
             } else {
                 operation.setGenreId(0);
@@ -160,7 +161,7 @@ public class TvFragment extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void getMovie() {
-        GetData.getTv(getContext(), 1, new Consumer<TvResponse>() {
+        GetData.getTv(getContext(), currentPage, new Consumer<TvResponse>() {
             @Override
             public void accept(TvResponse moveResponse) {
                 list.addAll(moveResponse.getResults());

@@ -29,8 +29,8 @@ public class FilterActivity extends AppCompatActivity {
     ArrayAdapter<Integer> arrayAdapter;
     int filterType;
     Operation singletonModel;
-
     GenresAdapter genresAdapter;
+    private String type;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -41,12 +41,13 @@ public class FilterActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
+        type = intent.getStringExtra("type");
         filterType = intent.getIntExtra("intent", 0);
         listView = findViewById(R.id.listView);
         singletonModel = Operation.getInstance();
 
         if (filterType == 1) {
-            GetData.GET_GENRES(this, genres -> {
+            GetData.GET_GENRES(this, type, genres -> {
                 ArrayList<Genres> list = new ArrayList<>();
                 list.addAll(genres.getResults());
                 genresAdapter = new GenresAdapter(this, list);

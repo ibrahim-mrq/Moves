@@ -1,8 +1,6 @@
 package com.moves.Activity;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Build;
@@ -17,19 +15,14 @@ import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
-import com.moves.Adapter.MoveAdapter;
-import com.moves.DB.Database;
 import com.moves.Model.Move;
 import com.moves.R;
-import com.moves.network.ResponseModel.MoveResponse;
 import com.moves.network.ResponseModel.VideoResponse;
 import com.moves.network.operations.GetData;
-import com.moves.network.retrofit.RetrofitClient;
 
 import java.util.function.Consumer;
 
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 import io.realm.exceptions.RealmPrimaryKeyConstraintException;
 
@@ -44,7 +37,8 @@ public class DetailActivity extends
     private TextView tv_name, tv_date, tv_langueg, tv_OriginalTitle, tv_overview;
     private RatingBar ratingBar;
     private ImageView imageView;
-    Realm mRealm;
+    private Realm mRealm;
+    private String type;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -53,7 +47,8 @@ public class DetailActivity extends
         setContentView(R.layout.activity_detail);
 
         mRealm = Realm.getDefaultInstance();
-
+        Intent intent = getIntent();
+        type = intent.getStringExtra("type");
         playerView = findViewById(R.id.player);
         tv_name = findViewById(R.id.detail_name);
         tv_date = findViewById(R.id.detail_date);
@@ -188,7 +183,7 @@ public class DetailActivity extends
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void getVideo() {
-        GetData.getVideo(DetailActivity.this, videoId, new Consumer<VideoResponse>() {
+        GetData.getVideo(DetailActivity.this, type, videoId, new Consumer<VideoResponse>() {
             @Override
             public void accept(final VideoResponse videoResponse) {
                 key = videoResponse.getResults().get(0).getKey();

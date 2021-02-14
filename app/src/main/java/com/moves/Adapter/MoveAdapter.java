@@ -63,6 +63,7 @@ public class MoveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, DetailActivity.class);
+                    intent.putExtra("type", "movie");
                     intent.putExtra("videoId", lists.getId());
                     intent.putExtra("a", a);
                     intent.putExtra("name", lists.getTitle() + "");

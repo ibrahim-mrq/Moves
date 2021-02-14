@@ -18,7 +18,6 @@ public class Database extends SQLiteOpenHelper {
     public static final String DB_NAME = "Move.db";
     public static final int DB_VERSION = 2;
 
-    /* TODO : >> Menu DB */
     public static final String MOVE_TB_NAME = "move";
     //    public static final String MOVE_COLUMN_adult = "adult";
 //    public static final String MOVE_COLUMN_backdropPath = "backdropPath";
